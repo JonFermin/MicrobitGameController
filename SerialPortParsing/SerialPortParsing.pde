@@ -31,7 +31,7 @@ int numFeatures = 6;
 String featureString = "";
 
 void setup() {
-  size(300, 250);
+  size(600, 250);
   frameRate(100);
 
   //Set up display
@@ -80,7 +80,7 @@ void Port(int n) {
   myPort.clear(); //Throw out first reading, in case we're mid-feature vector
   gettingData = true;
   serial = null; //Initialise serial string
-  numFeatures = 6;
+  numFeatures = 10;
 }
 
 //Called in a loop at frame rate (100 Hz)
@@ -122,7 +122,7 @@ void getData() {
     */
       //print(serial.substring(0,1));
       if (serial.substring(0,1).compareTo("a") == 0) {
-      serial = serial.replace("a: ", "");
+      serial = serial.replace("a", "");
       a = split(serial, ',');  //a new array (called 'a') that stores values into separate cells (separated by commas specified in your Arduino program)
       //numFeatures = a.length;
       //if (bStack.empty()){
@@ -133,7 +133,7 @@ void getData() {
       //}
       //sendFeatures(a);
     } else {
-      serial = serial.replace("b: ", "");
+      serial = serial.replace("b", "");
       b = split(serial, ',');
       //if (aStack.empty()){
       // bStack.push(b); 
