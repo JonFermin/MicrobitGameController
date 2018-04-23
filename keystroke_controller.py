@@ -73,8 +73,8 @@ def keystroke_controller(wek_outputs, accLH, buttonsLH, accRH, buttonsRH):
             pyautogui.keyUp('c')
 			print ("pin0")
 		elif(buttonsLH == 3):
-			pyautogui.keyDown('c')
-            pyautogui.keyUp('c')
+			pyautogui.keyDown('d')
+            pyautogui.keyUp('d')
 			print ("pin1")
 
 
