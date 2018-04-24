@@ -17,7 +17,11 @@ pyautogui.PAUSE = .5
 from pythonosc import dispatcher
 from pythonosc import osc_server
 
+# Print the OSC stream
+# Make the amount of args equal to the amount of OSC values you're sending
 def print_test(arg1, arg2, arg3, arg4, arg5):
+	# Generally your first argument is the OSC Message
+	# in this case its /wek/outputs
 	try:
 		print(str(arg1) + str(arg2) + str(arg3) + str(arg4) + str(arg5))
 	except ValueError: pass
@@ -71,16 +75,24 @@ def keystroke_controller(wek_outputs, accLH, buttonsLH, accRH, buttonsRH):
 
 
 if __name__ == "__main__":
-	#Listen into an OSC port
+	# Listen into an OSC port
 	parser = argparse.ArgumentParser()
+	# Enter your IP into default.
+	# Generally it's 127.0.0.1 for Localhost
 	parser.add_argument("--ip",
-	  default="127.0.0.1", help="The ip to listen on")
+	  default="127.0.0.1", help="The ip to listen on") 
+	# Enter the OSC Port you're sending data to
 	parser.add_argument("--port",
 	  type=int, default=9999, help="The port to listen on")
 	args = parser.parse_args()
 
+
+	# The Dispatcher grabs the values that you get from a 
 	dispatcher = dispatcher.Dispatcher()
-	dispatcher.map("/gameController", keystroke_controller)
+	# The second function maps the amount of OSC values you're sending
+	# to the function that you put in the second argument
+	dispatcher.map("/gameController", print_test)
+	# Make sure to make print_test 
 
 	# pyautogui.typewrite('Hello world!', interval=0.25)
 
