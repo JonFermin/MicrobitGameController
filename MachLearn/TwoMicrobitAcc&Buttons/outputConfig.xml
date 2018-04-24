@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<OSCOutputGroup>
+  <oscMessage>/gameController</oscMessage>
+  <hostName>localhost</hostName>
+  <outputPort>9999</outputPort>
+  <outputs class="linked-list">
+    <wekimini.osc.OSCClassificationOutput>
+      <name>accLH</name>
+      <numClasses>5</numClasses>
+      <isSendingDistribution>false</isSendingDistribution>
+    </wekimini.osc.OSCClassificationOutput>
+    <wekimini.osc.OSCClassificationOutput>
+      <name>buttonsLH</name>
+      <numClasses>3</numClasses>
+      <isSendingDistribution>false</isSendingDistribution>
+    </wekimini.osc.OSCClassificationOutput>
+    <wekimini.osc.OSCClassificationOutput>
+      <name>accRH</name>
+      <numClasses>5</numClasses>
+      <isSendingDistribution>false</isSendingDistribution>
+    </wekimini.osc.OSCClassificationOutput>
+    <wekimini.osc.OSCClassificationOutput>
+      <name>buttonsRH</name>
+      <numClasses>3</numClasses>
+      <isSendingDistribution>false</isSendingDistribution>
+    </wekimini.osc.OSCClassificationOutput>
+  </outputs>
+</OSCOutputGroup>

@@ -122,6 +122,7 @@ void getData() {
     */
       //print(serial.substring(0,1));
       if (serial.substring(0,1).compareTo("a") == 0) {
+      a=null;
       serial = serial.replace("a", "");
       a = split(serial, ',');  //a new array (called 'a') that stores values into separate cells (separated by commas specified in your Arduino program)
       //numFeatures = a.length;
@@ -133,6 +134,7 @@ void getData() {
       //}
       //sendFeatures(a);
     } else {
+      b=null;
       serial = serial.replace("b", "");
       b = split(serial, ',');
       //if (aStack.empty()){
@@ -141,9 +143,10 @@ void getData() {
       //  String[] concated_features = concat_ab(a, bStack.pop());
       //  sendFeatures(concated_features);
       //}
-      
+      c = null;
       if (a != null && b != null ){
-       c = concat(a, b);
+       
+       c = concat(b , a);
        sendFeatures(c);
       }
     }
@@ -151,17 +154,17 @@ void getData() {
 }
 
 void sendFeatures(String[] s) {
-  OscMessage msg = new OscMessage("/wek/inputs/b");
+  OscMessage msg = new OscMessage("/wek/inputs");
   StringBuilder sb = new StringBuilder();
   
   try {
     for (int i = 0; i < s.length; i++) {
       float f = Float.parseFloat(s[i]); 
-      //msg.add(f);
+      msg.add(f);
       sb.append(String.format("%.2f", f)).append(" ");
     }
     
-    //oscP5.send(msg, dest);
+    oscP5.send(msg, dest);
     featureString = sb.toString();
     println(featureString);
   } catch (Exception ex) {

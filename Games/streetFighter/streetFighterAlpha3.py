@@ -9,8 +9,10 @@ import pyautogui
 
 # import threading
 
+# Street Fighter Alpha 3
+# https://emulatoronline.com/gba-games/street-fighter-alpha-3/
 
-pyautogui.PAUSE = .3
+pyautogui.PAUSE = .5
 
 from pythonosc import dispatcher
 from pythonosc import osc_server
@@ -31,39 +33,22 @@ def keystroke_controller(wek_outputs, accLH, buttonsLH, accRH, buttonsRH):
 			pass
 		elif(accLH == 2):
 			# while (accLH == 2):
-			pyautogui.keyDown('up')
+			pyautogui.keyDown('left')
+			pyautogui.keyUp('left')
 			
 			# print ("up")
 		elif(accLH == 3):
-			pyautogui.keyDown('down')
-			
+			pyautogui.keyDown('right')
+			pyautogui.keyUp('right')
 			# print ("down")
 		elif(accLH == 4):
-			pyautogui.keyDown('left')
-			
+			pyautogui.keyDown('a')
+			pyautogui.keyUp('a')
 			# print ("left")
 		elif(accLH == 5):
-			pyautogui.keyDown('right')
-			
+			pyautogui.keyDown('x')
+			pyautogui.keyUp('x')
 			# print ("right")
-
-		pyautogui.keyUp('up')
-		pyautogui.keyUp('down')
-		pyautogui.keyUp('left')
-		pyautogui.keyUp('right')
-		# BUTTONS LEFT HAND	
-		# second set of classes
-		if(buttonsLH == 1):
-			# print ("restLHB")
-			pass
-		elif(buttonsLH == 2):
-			pyautogui.kaeyDown('a')
-			pyautogui.keyUp('a')
-			# print ("pin0")
-		elif(buttonsLH == 3):
-			pyautogui.keyDown('b')
-			pyautogui.keyUp('b')
-			# print ("pin1")
 
 		# ACCELEROMETER RIGHT HAND	
 		# third set of classes
@@ -71,35 +56,22 @@ def keystroke_controller(wek_outputs, accLH, buttonsLH, accRH, buttonsRH):
 			# print ("restRH")
 			pass
 		elif(accRH == 2):
-			pyautogui.keyDown('b')
-			pyautogui.keyUp('b')
+			pyautogui.keyDown('up')
+			pyautogui.keyUp('up')
 			# print ("buttonPush1")
 		elif(accRH == 3):
-			pyautogui.keyDown('b')
-			pyautogui.keyUp('b')
+			pyautogui.keyDown('down')
+			pyautogui.keyUp('down')
 			# print ("buttonPush2")
 		elif(accRH == 4):
-			pyautogui.keyDown('b')
-			pyautogui.keyUp('b')
+			pyautogui.keyDown('z')
+			pyautogui.keyUp('z')
 			# print ("buttonPush3")
 		elif(accRH == 5):
-			pyautogui.keyDown('b')
-			pyautogui.keyUp('b')
-			# print ("buttonPush4")
-
-		# BUTTONS RIGHT HAND
-		# fourth set of classes
-		if(buttonsRH == 1):
-			# print ("restRHB")
-			pass
-		elif(buttonsRH == 2):
-			pyautogui.keyDown('c')
-			pyautogui.keyUp('c')
-			# print ("pin0")
-		elif(buttonsRH == 3):
 			pyautogui.keyDown('d')
 			pyautogui.keyUp('d')
-			# print ("pin1")
+			# print ("buttonPush4")
+
 	except ValueError: pass
 
 

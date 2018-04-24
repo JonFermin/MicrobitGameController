@@ -7,10 +7,12 @@ import math
 
 import pyautogui
 
-# import threading
+
+# Mario Kart Super Circuit
+#https://emulatoronline.com/gba-games/mario-kart-super-circuit/
 
 
-pyautogui.PAUSE = .3
+pyautogui.PAUSE = .5
 
 from pythonosc import dispatcher
 from pythonosc import osc_server
@@ -24,31 +26,18 @@ def keystroke_controller(wek_outputs, accLH, buttonsLH, accRH, buttonsRH):
 	try:
 		# ACCELEROMETER LEFT HAND
 		# first set of classes
-		accLH
+		print (accLH)
 
 		if(accLH == 1):
 			# print ("restLH")
 			pass
 		elif(accLH == 2):
 			# while (accLH == 2):
-			pyautogui.keyDown('up')
+			pyautogui.keyDown('left')
 			
 			# print ("up")
 		elif(accLH == 3):
-			pyautogui.keyDown('down')
-			
-			# print ("down")
-		elif(accLH == 4):
-			pyautogui.keyDown('left')
-			
-			# print ("left")
-		elif(accLH == 5):
 			pyautogui.keyDown('right')
-			
-			# print ("right")
-
-		pyautogui.keyUp('up')
-		pyautogui.keyUp('down')
 		pyautogui.keyUp('left')
 		pyautogui.keyUp('right')
 		# BUTTONS LEFT HAND	
@@ -57,35 +46,13 @@ def keystroke_controller(wek_outputs, accLH, buttonsLH, accRH, buttonsRH):
 			# print ("restLHB")
 			pass
 		elif(buttonsLH == 2):
-			pyautogui.kaeyDown('a')
+			pyautogui.keyDown('a')
 			pyautogui.keyUp('a')
 			# print ("pin0")
 		elif(buttonsLH == 3):
-			pyautogui.keyDown('b')
-			pyautogui.keyUp('b')
+			pyautogui.keyDown('d')
+			pyautogui.keyUp('d')
 			# print ("pin1")
-
-		# ACCELEROMETER RIGHT HAND	
-		# third set of classes
-		if(accRH == 1):
-			# print ("restRH")
-			pass
-		elif(accRH == 2):
-			pyautogui.keyDown('b')
-			pyautogui.keyUp('b')
-			# print ("buttonPush1")
-		elif(accRH == 3):
-			pyautogui.keyDown('b')
-			pyautogui.keyUp('b')
-			# print ("buttonPush2")
-		elif(accRH == 4):
-			pyautogui.keyDown('b')
-			pyautogui.keyUp('b')
-			# print ("buttonPush3")
-		elif(accRH == 5):
-			pyautogui.keyDown('b')
-			pyautogui.keyUp('b')
-			# print ("buttonPush4")
 
 		# BUTTONS RIGHT HAND
 		# fourth set of classes
@@ -93,12 +60,12 @@ def keystroke_controller(wek_outputs, accLH, buttonsLH, accRH, buttonsRH):
 			# print ("restRHB")
 			pass
 		elif(buttonsRH == 2):
-			pyautogui.keyDown('c')
-			pyautogui.keyUp('c')
+			pyautogui.keyDown('z')
+			pyautogui.keyUp('z')
 			# print ("pin0")
 		elif(buttonsRH == 3):
-			pyautogui.keyDown('d')
-			pyautogui.keyUp('d')
+			pyautogui.keyDown('x')
+			pyautogui.keyUp('x')
 			# print ("pin1")
 	except ValueError: pass
 
