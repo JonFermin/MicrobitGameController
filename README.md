@@ -6,13 +6,13 @@ The microbit just sends the accelerometer data through radio and button presses.
 ```typescript
 	let msg = ""
 	basic.showString("A")
-		//prints out A on the LED's on the microbit
+	//prints out A on the LED's on the microbit
 	radio.setGroup(1)
 	radio.setTransmitPower(7)
 	basic.forever(() => {
-	msg = accx + accy + accz + button1 + button2
-	radio.sendString(msg)
-	basic.pause(1) 
+		msg = accx + accy + accz + button1 + button2
+		radio.sendString(msg)
+		basic.pause(1) 
 		//compensates for the hardware
 	})
 	
