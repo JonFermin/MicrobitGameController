@@ -70,9 +70,6 @@ b2 = 0
 ser = serial.Serial("/dev/cu.usbmodem1422", 115200, timeout = 1)
 
 if __name__ == "__main__":
-
-	
-
 	# Data comes in looking like this:
 	# b'a530,503,253,0,0              \r\n'
 	# b'b409,448,273,0,0              \r\n'
