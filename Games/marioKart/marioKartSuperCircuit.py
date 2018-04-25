@@ -92,11 +92,11 @@ if __name__ == "__main__":
 	# The second function maps the amount of OSC values you're sending
 	# to the function that you put in the second argument
 	dispatcher.map("/gameController", print_test)
-	# Make sure to make print_test 
-
-	# pyautogui.typewrite('Hello world!', interval=0.25)
+	# Make sure to make print_test have as many arguments as your values
 
 	server = osc_server.ThreadingOSCUDPServer(
 	  (args.ip, args.port), dispatcher)
+	# initialize the server
 	print("Serving on {}".format(server.server_address))
 	server.serve_forever()
+	# serve the OSC packets forever
