@@ -1,6 +1,6 @@
 # Microbit Game Controller
 By using radio communication, and data through serial ports, this project creates a game controller out of the microbit. 
-(The full documentation is here.)[https://jonfermin.wordpress.com/2018/04/24/microbit-game-controller/]
+[The full documentation is here.](https://jonfermin.wordpress.com/2018/04/24/microbit-game-controller/)
 
 ## Microbit Pseudocode
 The microbit just sends the accelerometer data through radio and button presses.
