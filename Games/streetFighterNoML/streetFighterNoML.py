@@ -1,41 +1,71 @@
 # Jonathan Fermin
-# Mario Kart Super Circuit
+# Street Fighter
 # https://emulatoronline.com/gba-games/mario-kart-super-circuit/
 
 import serial
 import pyautogui
 from threading import Thread
+import time
 # pyautogui.PAUSE = .5 
 # set a pause between each keystroke function
+
 
 def acceleration_controller(LHaccx, LHaccy, LHaccz, RHaccx, RHaccy, RHaccz):
 	# print("acc")
 	# find break points here by printing out data and finding when the tilt becomes too much
-	leftTilt = 600 
-	rightTilt = 400
-	if (LHaccx >= leftTilt and RHaccx >= leftTilt):
-		# print("left")
-		pyautogui.keyDown('left')
-	elif (LHaccx <= rightTilt and RHaccx <= rightTilt):
-		# print("right")
-		pyautogui.keyDown('right')
-	elif ((LHaccx > rightTilt and RHaccx > rightTilt) or(LHaccx < leftTilt and RHaccx < leftTilt)):
-		pyautogui.keyUp('left')
-		pyautogui.keyUp('right')
+	# leftTilt = 600 
+	# rightTilt = 400
+	# upper:
+	uppery =  50
+	upperz = 700
+
+	# hook:
+	hookx = 100
+	hooky =  100
+
+	Lhookx = 700
+	Lhooky = 700
+
+	# straight:
+	straightx = 400
+	straighty = 150
+	straightz = 400
+
+	straighty2 = 800
+	straightz2 = 650
+
+	print (str(RHaccx) + "," + str(RHaccy) + "," + str(RHaccz))
+	# print (str(LHaccx) + "," + str(LHaccy) + "," + str(LHaccz))
+
+	if (RHaccy < uppery and RHaccz > upperz):
+		print("YA")
+	elif (RHaccx < hookx and RHaccy < hooky):
+		print("BA")
+	elif ((RHaccx < straightx and RHaccy < straighty) or (RHaccy > straighty2 and RHaccz > straightz2)) :
+		print("NA")
+	# if (LHaccy < uppery and LHaccz > upperz):
+	# 	print("YA")
+	# elif (LHaccx > Lhookx and LHaccy > Lhooky):
+	# 	print("BA")
+	# elif (LHaccx > straightx and LHaccy < straighty and LHaccz < straightz):
+	# 	print("NA")
+
+
+	
 
 def lh_controller(LHbutton1, LHbutton2):
 	leftButton1 = 'x'
 	leftButton2 = 'a'
 	if LHbutton1 == "1":
 		pyautogui.keyDown(leftButton1)
-		# print("lb1")
+		print("lb1")
 				# print(leftButton1)
 	else:
 		pyautogui.keyUp(leftButton1)
 		# print("off")
 	if LHbutton2 == "1":
 		pyautogui.keyDown(leftButton2)
-		# print("lb2")
+		print("lb2")
 		# print(leftButton2)
 	else:
 		pyautogui.keyUp(leftButton2)
@@ -47,13 +77,13 @@ def rh_controller(RHbutton1, RHbutton2):
 	rightButton2 = 'z'
 	if RHbutton1 == "1":
 		pyautogui.keyDown(rightButton1)
-		# print("rb1")
+		print("rb1")
 		# print("off")
 	else:
 		pyautogui.keyUp(rightButton1)
 	if RHbutton2 == "1":
 		pyautogui.keyDown(rightButton2)
-		# print("rb2")
+		print("rb2")
 	else:
 		pyautogui.keyUp(rightButton2)
 		# print("off")
@@ -82,13 +112,16 @@ def run_controller():
 	global bz
 	global b1
 	global b2
+
+	# print(a1, ",", a2, ",", b1, ",", b2)
 	while True:
 		# print(bx)
 		# print(a1, a2)
 		# print(b1, b2) 
 		acceleration_controller(ax, ay, az, bx, by, bz)
-		lh_controller(a1, a2)
-		rh_controller(b1, b2)
+		# lh_controller(a1, a2)
+		# rh_controller(b1, b2)
+		time.sleep(.1)
 
 run_thread = Thread(target=run_controller, args = ())
 run_thread.start()
@@ -107,7 +140,8 @@ ser = serial.Serial("/dev/cu.usbmodem1422", 115200)
 while True:
 	# convert from bytes to a string
 
-	line = str(ser.readline());
+	line = str(ser.readline())
+	# print(line)
 	if line:
 		# if the character coming in is an a
 		# we want to set it to a certain value
@@ -129,7 +163,6 @@ while True:
 				a1 = a[3]
 				a2 = a[4]
 				# print (a1)
-			# print (a[3] + "," + a[4])
 		elif (line[2] == "b"):
 			# print("before" + line)
 			line = line.replace("b'b", "").replace(" ", "")
@@ -144,6 +177,8 @@ while True:
 				b1 = b[3]
 				b2 = b[4]
 				# print (bx)
+
+			# print (str(bx) + "," + str(by) + "," + str(bz))
 
 # 
 

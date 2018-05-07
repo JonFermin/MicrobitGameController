@@ -23,9 +23,9 @@ def acceleration_controller(LHaccx, LHaccy, LHaccz, RHaccx, RHaccy, RHaccz):
 		pyautogui.keyUp('left')
 		pyautogui.keyUp('right')
 
-def lh_controller(LHbutton1, LHbutton2):
-	leftButton1 = 'x'
-	leftButton2 = 'a'
+def h_controller(LHbutton1, LHbutton2, RHbutton1, RHbutton2):
+	leftButton1 = 'a'
+	leftButton2 = 'b'
 	if LHbutton1 == "1":
 		pyautogui.keyDown(leftButton1)
 		# print("lb1")
@@ -41,10 +41,8 @@ def lh_controller(LHbutton1, LHbutton2):
 		pyautogui.keyUp(leftButton2)
 		# print("off")
 
-def rh_controller(RHbutton1, RHbutton2):
-	# print (RHbutton1 + RHbutton2)
-	rightButton1 = 'd'
-	rightButton2 = 'z'
+	rightButton1 = 's'
+	rightButton2 = 'x'
 	if RHbutton1 == "1":
 		pyautogui.keyDown(rightButton1)
 		# print("rb1")
@@ -83,12 +81,8 @@ def run_controller():
 	global b1
 	global b2
 	while True:
-		# print(bx)
-		# print(a1, a2)
-		# print(b1, b2) 
 		acceleration_controller(ax, ay, az, bx, by, bz)
-		lh_controller(a1, a2)
-		rh_controller(b1, b2)
+		h_controller(a1, a2, b1, b2)
 
 run_thread = Thread(target=run_controller, args = ())
 run_thread.start()

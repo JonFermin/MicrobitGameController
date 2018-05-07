@@ -1,5 +1,5 @@
 import serial
-ser = serial.Serial("/dev/cu.usbmodem1422", 115200, bytesize=19)
+ser = serial.Serial("/dev/cu.usbmodem1422", 115200)
 
 
 ax = 0
@@ -30,7 +30,7 @@ while True:
 			az = int(a[2])
 			a1 = bool(a[3])
 			a2 = bool(a[4])
-			print (a2)
+			# print (a2)
 			# print(a[4])
 		elif (line[2] == "b"):
 			line = line.replace("b'b", "")

@@ -9,27 +9,65 @@ from threading import Thread
 # set a pause between each keystroke function
 
 def acceleration_controller(LHaccx, LHaccy, LHaccz, RHaccx, RHaccy, RHaccz):
-	# print("acc")
 	# find break points here by printing out data and finding when the tilt becomes too much
-	leftTilt = 600 
+	leftTilt = 600
 	rightTilt = 400
-	if (LHaccx >= leftTilt and RHaccx >= leftTilt):
+	if (LHaccx >= leftTilt):
 		# print("left")
 		pyautogui.keyDown('left')
-	elif (LHaccx <= rightTilt and RHaccx <= rightTilt):
+	elif (LHaccx <= rightTilt):
 		# print("right")
 		pyautogui.keyDown('right')
-	elif ((LHaccx > rightTilt and RHaccx > rightTilt) or(LHaccx < leftTilt and RHaccx < leftTilt)):
+	else:
 		pyautogui.keyUp('left')
 		pyautogui.keyUp('right')
 
-def lh_controller(LHbutton1, LHbutton2):
+
+	# uppery =  50
+	# upperz = 700
+
+	# # hook:
+	# hookx = 100
+	# hooky =  100
+
+	# # print (str(LHaccx) + "," + str(LHaccy) + "," + str(LHaccz))
+	# rightButton1 = 'z'
+	# rightButton2 = 'd'
+
+	# if (RHaccy < uppery and RHaccz > upperz):
+	# 	pyautogui.keyDown(rightButton1)
+	# 	print("YA")
+	# elif (RHaccx < hookx and RHaccy < hooky):
+	# 	pyautogui.keyDown(rightButton2)
+	# 	print("BA")
+	# else:
+	# 	pyautogui.keyDown(rightButton1)
+	# 	pyautogui.keyDown(rightButton2)
+
+
+def h_controller(LHbutton1, LHbutton2, RHButton1, RHButton2):
 	leftButton1 = 'x'
 	leftButton2 = 'a'
+	rightButton1 = 'z'
+	rightButton2 = 'd'
+	if RHButton1 == "1":
+		pyautogui.keyDown(rightButton1)
+		# print("lb1")
+		# print(leftButton1)
+	else:
+		pyautogui.keyUp(rightButton1)
+		# print("off")
+	if RHButton2 == "1":
+		pyautogui.keyDown(rightButton2)
+		# print("lb2")
+		# print(leftButton2)
+	else:
+		pyautogui.keyUp(rightButton2)
+		# print("off")
 	if LHbutton1 == "1":
 		pyautogui.keyDown(leftButton1)
 		# print("lb1")
-				# print(leftButton1)
+		# print(leftButton1)
 	else:
 		pyautogui.keyUp(leftButton1)
 		# print("off")
@@ -39,23 +77,6 @@ def lh_controller(LHbutton1, LHbutton2):
 		# print(leftButton2)
 	else:
 		pyautogui.keyUp(leftButton2)
-		# print("off")
-
-def rh_controller(RHbutton1, RHbutton2):
-	# print (RHbutton1 + RHbutton2)
-	rightButton1 = 'd'
-	rightButton2 = 'z'
-	if RHbutton1 == "1":
-		pyautogui.keyDown(rightButton1)
-		# print("rb1")
-		# print("off")
-	else:
-		pyautogui.keyUp(rightButton1)
-	if RHbutton2 == "1":
-		pyautogui.keyDown(rightButton2)
-		# print("rb2")
-	else:
-		pyautogui.keyUp(rightButton2)
 		# print("off")
 
 # First Microbit
@@ -87,8 +108,7 @@ def run_controller():
 		# print(a1, a2)
 		# print(b1, b2) 
 		acceleration_controller(ax, ay, az, bx, by, bz)
-		lh_controller(a1, a2)
-		rh_controller(b1, b2)
+		h_controller(a1, a2, b1, b2)
 
 run_thread = Thread(target=run_controller, args = ())
 run_thread.start()
